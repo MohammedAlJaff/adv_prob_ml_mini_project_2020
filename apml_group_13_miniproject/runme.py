@@ -250,10 +250,10 @@ if  __name__ == '__main__':
     ## Q7.  ------------------------
     ## Q8.  ------------------------
     
+    print('PERFORMING Q8 COMPUTATIONS AND RESULTS')
     # Run message-passing with skill priors for team1 and team2, beta, and y as input parameters
-    s1_posterior_mean, s1_posterior_variance, s2_posterior_mean, s2_posterior_variance = q7_8lib.message_passing(
-        s1_prior_mean= 100, s1_prior_variance=1 0* *2, s2_prior_mean= 100, s2_prior_variance=1 0* *2,
-        beta = 3, y_observed= 1)
+    s1_posterior_mean, s1_posterior_variance, s2_posterior_mean, s2_posterior_variance = q7_8lib.message_passing(s1_prior_mean= 100, s1_prior_variance=10**2, s2_prior_mean= 100, s2_prior_variance=10**2, beta = 3, y_observed= 1)
+
 
     # Stats for p(s2|y=1) Gaussian from Gibbs
     p2_mu_est_4 = player_2_stats_estimate[0]
@@ -268,8 +268,8 @@ if  __name__ == '__main__':
     x1 = np.linspace(p1_mu_est_4 - 4 * p1_sigma_est_4, p1_mu_est_4 + 4 * p1_sigma_est_4, 100)
     x2 = np.linspace(p2_mu_est_4 - 4 * p2_sigma_est_4, p2_mu_est_4 + 4 * p2_sigma_est_4, 100)
 
-    plt.plot(x1, stats.norm.pdf(x1, loc=p1_mu_est_4, scale=p1_sigma_est_4), label='$p(s_{1}|y=1) from gibbs$')
-    plt.plot(x2, stats.norm.pdf(x2, loc=p2_mu_est_4, scale=p2_sigma_est_4), label='$p(s_{2}|y=1) from gibbs$')
+    plt.plot(x1, stats.norm.pdf(x1, loc=p1_mu_est_4, scale=p1_sigma_est_4), label='$p(s_{1}|y=1)$ from gibbs')
+    plt.plot(x2, stats.norm.pdf(x2, loc=p2_mu_est_4, scale=p2_sigma_est_4), label='$p(s_{2}|y=1)$ from gibbs')
 
     plt.plot(x1, stats.norm.pdf(x1, loc=s1_posterior_mean, scale=np.sqrt(s1_posterior_variance)),
              label='$p(s_{1}|y=1)$ from m-p')
@@ -280,12 +280,153 @@ if  __name__ == '__main__':
     plt.xlabel('probability density')
     plt.xlabel('skills')
     plt.legend()
-    plt.show()
 
-   
+
     ## Q9.  ------------------------
-   
-   
+
+    print('PERFORMING Q9 COMPUTATIONS AND RESULTS')
+
+    # Make dictionary of team stats (mean and variance) & list of all games with result
+    stats_dictionary, result_list = q9lib.make_stats_dictionary('syntheticSerieA.csv', stats_dictionary={}, printable=0)
+
+    correct_predictions = 0
+    nr_of_draws = 0
+
+
+
+    x = np.random.choice(range(len(result_list)), size=len(result_list), replace=False)
+    randomized_list = []
+    for i in x:
+        randomized_list.append(result_list[i])
+    result_list = randomized_list
+
+    for i in range(len(result_list)):
+        # result_list holds [team1, team2, result = score1 - score2]
+        print(f"\nResult game {i}:   {result_list[i]}")
+        team1 = result_list[i][0]
+        team2 = result_list[i][1]
+        
+        print('team1: ', team1)
+        print('team2: ', team2)
+        result = result_list[i][2]
+        
+        # stats_dictionary with keyword 'teamname' and value [mean, variance]
+        print(f"Stats before game: {stats_dictionary[team1]}, {stats_dictionary[team2]}")
+
+        if result == 0:  # ignore tied games for now
+            print("Game ignored due to tie")
+            print(f"Stats after game:  {stats_dictionary[team1]}, {stats_dictionary[team2]}")
+            nr_of_draws += 1
+            print("Draws: ", nr_of_draws)
+        else:
+        
+            # prediktera mat resultat och spara prediktion
+            pred_result = q9lib.predict_winner(team1, team2, stats_dictionary)
+            
+            if np.sign(result) == np.sign(pred_result):
+                    correct_predictions += 1
+                    print("Correct pred: ", correct_predictions)
+            
+            print('true result: ', result)
+            print('pred result: ', pred_result)
+                    
+            s_obs, t_obs =  q9lib.gibbs_sampler(L=5000,player_1_stats=stats_dictionary[team1], player_2_stats=stats_dictionary[team2], t_game=result)
+            
+            burn_in_value = 1000
+            s_obs = s_obs[burn_in_value:]
+            player_1_stats_posterior, player_2_stats_posterior = q9lib.player_stats_estimate_from_obs(s_obs)
+            
+            # Update team stats so posterior makes new prior
+            stats_dictionary[team1] = player_1_stats_posterior
+            stats_dictionary[team2] = player_2_stats_posterior
+
+
+            print(f"Stats AFTER game: {stats_dictionary[team1]}, {stats_dictionary[team2]}")
+
+    print()
+    print("correct_predictions ", correct_predictions)
+    print("reslist: ", len(result_list))
+    print("draws: ", nr_of_draws)
+    print('performance: ', correct_predictions / (len(result_list)-nr_of_draws))
+
+
+
+
+
+
     ## Q10. ------------------------
+
+    print('PERFORMING Q10 COMPUTATIONS AND RESULTS')
+
+    stats_dictionary, result_list = q10lib.make_stats_dictionary('SerieA.csv', stats_dictionary={}, printable=0)
+    
+    form_dictionary = dict() # keep track of the teams 5-game-form.
+    for keys in stats_dictionary:
+        form_dictionary[keys] = []
+
+    
+    correct_predictions = 0
+    nr_of_draws = 0
+
+    for i in range(len(result_list)):
+        # result_list holds [team1, team2, result = score1 - score2]
+        print(f"\nResult game {i}:   {result_list[i]}")
+        team1 = result_list[i][0]
+        team2 = result_list[i][1]
+        result = result_list[i][2]
+        
+        # stats_dictionary with keyword 'teamname' and value [mean, variance]
+        print(f"Stats before game: {stats_dictionary[team1]}, {stats_dictionary[team2]}")
+
+        if result == 0:  # ignore tied games for now
+            print("Game ignored due to tie")
+            print(f"Stats after game:  {stats_dictionary[team1]}, {stats_dictionary[team2]}")
+            nr_of_draws += 1
+            print("Draws: ", nr_of_draws)
+            
+            form_dictionary[team1].append(0)
+            form_dictionary[team2].append(0)
+        else:
+        
+            # predict result and save prediction
+            pred_result = q10lib.predict_winner(team1, team2, stats_dictionary, form_dictionary, result_list, tmax=i)
+            
+            if np.sign(result) == np.sign(pred_result):
+                    correct_predictions += 1
+                    print("Correct pred: ", correct_predictions)
+            
+            print('pred result: ', pred_result)
+            print('true result: ', result)
+                    
+            form_dictionary[team1].append(np.sign(result))
+            form_dictionary[team2].append(-np.sign(result))
+            #print('form dic 1:', form_dictionary[team1])
+            #print('form dic 2:', form_dictionary[team2])
+                
+            s_obs, t_obs = q10lib.gibbs_sampler(L=5000, player_1_stats=stats_dictionary[team1], player_2_stats=stats_dictionary[team2],t_game=result)
+            
+            burn_in_value = 3000
+            s_obs = s_obs[burn_in_value:]
+            player_1_stats_posterior, player_2_stats_posterior = q10lib.player_stats_estimate_from_obs(s_obs)
+            
+            
+            # Update team stats so posterior makes new prior
+            stats_dictionary[team1] = player_1_stats_posterior
+            stats_dictionary[team2] = player_2_stats_posterior
+
+
+            print(f"Stats AFTER game: {stats_dictionary[team1]}, {stats_dictionary[team2]}")
+
+    print()
+    print("correct_predictions ", correct_predictions)
+    print("reslist: ", len(result_list))
+    print("draws: ", nr_of_draws)
+    print('Improved Informed prediction performance: ', correct_predictions / (len(result_list)-nr_of_draws))
+
+
+
+
+
+    ## DONE......................... 
     plt.show()
 
