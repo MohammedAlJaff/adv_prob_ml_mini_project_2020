@@ -249,7 +249,39 @@ if  __name__ == '__main__':
    
     ## Q7.  ------------------------
     ## Q8.  ------------------------
-   
+    
+    # Run message-passing with skill priors for team1 and team2, beta, and y as input parameters
+    s1_posterior_mean, s1_posterior_variance, s2_posterior_mean, s2_posterior_variance = q7lib.message_passing(
+        s1_prior_mean= 100, s1_prior_variance=1 0* *2, s2_prior_mean= 100, s2_prior_variance=1 0* *2,
+        beta = 3, y_observed= 1)
+
+    # Stats for p(s2|y=1) Gaussian from Gibbs
+    p2_mu_est_4 = player_2_stats_estimate[0]
+    p2_var_est_4 = player_2_stats_estimate[1]
+    p2_sigma_est_4 = np.sqrt(p1_var_est_4)
+
+    # Plot of histograms for both players from gibbs, both gaussians from gibbs and both gaussians from message-passing
+    plt.figure(figsize=[10, 10])
+    plt.hist(s_obs[burn_in_indx:, 0], bins=50, density=True)  # P(S1 \Y=1)
+    plt.hist(s_obs[burn_in_indx:, 1], bins=50, density=True)  # P(S2 \Y=1)
+
+    x1 = np.linspace(p1_mu_est_4 - 4 * p1_sigma_est_4, p1_mu_est_4 + 4 * p1_sigma_est_4, 100)
+    x2 = np.linspace(p2_mu_est_4 - 4 * p2_sigma_est_4, p2_mu_est_4 + 4 * p2_sigma_est_4, 100)
+
+    plt.plot(x1, stats.norm.pdf(x1, loc=p1_mu_est_4, scale=p1_sigma_est_4), label='$p(s_{1}|y=1) from gibbs$')
+    plt.plot(x2, stats.norm.pdf(x2, loc=p2_mu_est_4, scale=p2_sigma_est_4), label='$p(s_{2}|y=1) from gibbs$')
+
+    plt.plot(x1, stats.norm.pdf(x1, loc=s1_posterior_mean, scale=np.sqrt(s1_posterior_variance)),
+             label='$p(s_{1}|y=1)$ from m-p')
+    plt.plot(x2, stats.norm.pdf(x2, loc=s2_posterior_mean, scale=np.sqrt(s2_posterior_variance)),
+             label='$p(s_{2}|y=1)$ from m-p')
+
+    plt.title('comparing $p(s_{1})$ and $p(s_{2})$ from Gibbs sampling and message-passing')
+    plt.xlabel('probability density')
+    plt.xlabel('skills')
+    plt.legend()
+    plt.show()
+
    
     ## Q9.  ------------------------
    
