@@ -251,7 +251,7 @@ if  __name__ == '__main__':
     ## Q8.  ------------------------
     
     # Run message-passing with skill priors for team1 and team2, beta, and y as input parameters
-    s1_posterior_mean, s1_posterior_variance, s2_posterior_mean, s2_posterior_variance = q7lib.message_passing(
+    s1_posterior_mean, s1_posterior_variance, s2_posterior_mean, s2_posterior_variance = q7_8lib.message_passing(
         s1_prior_mean= 100, s1_prior_variance=1 0* *2, s2_prior_mean= 100, s2_prior_variance=1 0* *2,
         beta = 3, y_observed= 1)
 
