@@ -1,0 +1,34 @@
+CONTRIBUTION STATEMENTS
+GROUP 13
+  MOHAMMED AL-JAFF
+  JOEL OLOFSSON
+  CARL ÖHRNELL
+  
+COURSE: ADVANCED PROB. MACHINE LEARNING 5HP 
+UPPSALA UNIVERSITY -HT20
+
+
+  Q   | MAJ | JO  | CÖ  |
+-----------------------------
+  1  |   X  |     |     |
+-----------------------------
+  2  |   X  |     |     |
+-----------------------------
+  3  |   X  |     |     |
+-----------------------------
+  4  |   X  |     |     |
+-----------------------------
+  5  |   X  |     |     |
+-----------------------------
+  6  |   X  |     |     |
+------------------------------
+  7  |      |     |     |
+------------------------------
+  8  |      |     |     |
+------------------------------
+  9  |  X   |     |     |
+------------------------------
+  10 |  X   |     |     |
+------------------------------
+
+- All three of us were involved in writing the repor,  solving and writing code for our assigned questions. 
