@@ -7,6 +7,7 @@ GROUP 13
 COURSE: ADVANCED PROB. MACHINE LEARNING 5HP 
 UPPSALA UNIVERSITY -HT20
 
+MINIPROJECT INVOLVEMENT BASED QUESTION ASSIGNMNET INVOLVMENT
 
   Q   | MAJ | JO  | CÖ  |
 -----------------------------
@@ -31,4 +32,4 @@ UPPSALA UNIVERSITY -HT20
   10 |  X   |     |     |
 ------------------------------
 
-- All three of us were involved in writing the repor,  solving and writing code for our assigned questions. 
+- All three of us were involved in writing the repor, solving and writing code for our assigned questions. 
