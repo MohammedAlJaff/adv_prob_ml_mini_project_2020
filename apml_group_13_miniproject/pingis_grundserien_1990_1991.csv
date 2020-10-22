@@ -1,0 +1,57 @@
+round;date;team1;team2;result
+14;1991-02-19;Lyckeby BTK;IK Bele;1
+14;1991-02-19;Halmstad BTK;Ängby SK;1
+14;1991-02-19;Spårvägens BTK;Malmö FF BTF;1
+14;1991-02-19;Falkenbergs BTK;Söderhamns UIF;1
+13;1991-02-10;Lyckeby BTK;Ängby SK;1
+13;1991-02-10;Falkenbergs BTK;Spårvägens BTK;-1
+13;1991-02-10;Söderhamns UIF;Malmö FF BTF;-1
+13;1991-02-10;IK Bele;Halmstad BTK;0
+12;1991-01-15;Halmstad BTK;Lyckeby BTK;-1
+12;1991-01-13;Ängby SK;IK Bele;1
+12;1991-01-13;Spårvägens BTK;Söderhamns UIF;1
+12;1991-01-13;Malmö FF BTF;Falkenbergs BTK;1
+11;1990-12-18;Söderhamns UIF;IK Bele;0
+11;1990-12-18;Spårvägens BTK;Ängby SK;-1
+11;1990-12-18;Malmö FF BTF;Halmstad BTK;1
+11;1990-12-18;Falkenbergs BTK;Lyckeby BTK;1
+10;1990-12-11;Lyckeby BTK;Spårvägens BTK;0
+10;1990-12-11;Halmstad BTK;Söderhamns UIF;-1
+10;1990-12-11;Ängby SK;Malmö FF BTF;0
+10;1990-12-11;IK Bele;Falkenbergs BTK;0
+9;1990-12-05;Ängby SK;Falkenbergs BTK;1
+9;1990-12-04;Lyckeby BTK;Söderhamns UIF;1
+9;1990-12-04;IK Bele;Malmö FF BTF;0
+9;1990-12-04;Halmstad BTK;Spårvägens BTK;1
+8;1990-12-13;Falkenbergs BTK;Halmstad BTK;1
+8;1990-11-27;Söderhamns UIF;Ängby SK;-1
+8;1990-11-27;Spårvägens BTK;IK Bele;1
+8;1990-11-27;Malmö FF BTF;Lyckeby BTK;1
+7;1990-10-29;Ängby SK;Halmstad BTK;1
+7;1990-10-29;Söderhamns UIF;Falkenbergs BTK;1
+7;1990-10-29;Malmö FF BTF;Spårvägens BTK;1
+7;1990-10-29;IK Bele;Lyckeby BTK;-1
+6;1990-10-23;Ängby SK;Lyckeby BTK;1
+6;1990-10-23;Spårvägens BTK;Falkenbergs BTK;-1
+6;1990-10-23;Malmö FF BTF;Söderhamns UIF;0
+6;1990-10-23;Halmstad BTK;IK Bele;0
+5;1990-10-11;Söderhamns UIF;Spårvägens BTK;0
+5;1990-10-11;Falkenbergs BTK;Malmö FF BTF;-1
+5;1990-10-09;Lyckeby BTK;Halmstad BTK;1
+5;1990-10-09;IK Bele;Ängby SK;-1
+4;1990-09-28;Ängby SK;Spårvägens BTK;1
+4;1990-09-25;Lyckeby BTK;Falkenbergs BTK;0
+4;1990-09-25;Halmstad BTK;Malmö FF BTF;0
+4;1990-09-25;IK Bele;Söderhamns UIF;-1
+3;1990-09-18;Malmö FF BTF;Ängby SK;1
+3;1990-09-18;Söderhamns UIF;Halmstad BTK;1
+3;1990-09-18;Spårvägens BTK;Lyckeby BTK;-1
+3;1990-09-18;Falkenbergs BTK;IK Bele;1
+2;1990-09-16;Söderhamns UIF;Lyckeby BTK;0
+2;1990-09-16;Spårvägens BTK;Halmstad BTK;1
+2;1990-09-16;Malmö FF BTF;IK Bele;1
+2;1990-09-16;Falkenbergs BTK;Ängby SK;1
+1;1990-09-11;Lyckeby BTK;Malmö FF BTF;-1
+1;1990-09-11;Ängby SK;Söderhamns UIF;1
+1;1990-09-11;Halmstad BTK;Falkenbergs BTK;-1
+1;1990-09-11;IK Bele;Spårvägens BTK;1

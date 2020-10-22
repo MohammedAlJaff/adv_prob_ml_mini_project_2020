@@ -103,7 +103,7 @@ def player_stats_estimate_from_obs(s_obs):
 def make_stats_dictionary(filename, stats_dictionary, printable):
     with open(filename) as csvfile:
         reader = csv.DictReader(csvfile)
-        mean = 100; variance = (100 / 3) ** 2  # TrueSkill prior parameters before any games
+        mean = 100; variance = (15)**2  # TrueSkill prior parameters before any games
         gamelist = []
         for row in reader:
             # Create dictionary (=map) with keyword 'team' and value [mean, variance]
